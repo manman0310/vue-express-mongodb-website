@@ -6,7 +6,11 @@ var db = mongoose.connection; db.on('error', function callback() { //监听是�
 db.once('open', function callback() {
     //监听一次打开 
     //在这里创建你的模式和模型
-    console.log('connected!');
+    console.log('database has been connected!');
+});
+
+mongoose.connection.on("error", function (error) {
+    console.log("数据库连接失败" + error);
 });
 mongoose.connect('mongodb://localhost/advertisement');
 //连接到mongoDB的todo数据库 

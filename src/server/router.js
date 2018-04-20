@@ -10,9 +10,15 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' })
 
 })
-router.get('/outdoor', function (req, res, next) {
-  let result = conDb.find()
-  res.json(result);
+router.get('/outdoor', function (req, res) {
+  let result = conDb.findOne({ classify: outdoor }, function (error, doc) {
+    if (error) {
+      console.error(error)
+    } else {
+      console.log(doc)
+    }
+  })
+
 })
 
 export default router
